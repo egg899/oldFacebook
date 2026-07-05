@@ -14,6 +14,18 @@ export default {
         PublicacionFacebook
     },
 
+    data() {
+        return{
+             editandoPerfil: false,
+             formulario: {
+                nombre: "",
+                apellido: "",
+                profesion:""
+             }
+        }
+       
+    },
+
     computed: {
 
         usuarioPerfil() {
@@ -33,10 +45,39 @@ export default {
         },//publicacionesUsuario
 
         esMiPerfil() {
-            return usuario.id === this.usuarioPerfil.id;
-        }//esMiPerfil
+            return this.usuarioPerfil && usuario.id === this.usuarioPerfil.id;
+        },//esMiPerfil
 
-    }
+        
+
+    },//computed
+
+    methods: {
+        editarPerfil() {
+
+            this.formulario = {
+                nombre: this.usuarioPerfil.nombre,
+                apellido:this.usuarioPerfil.apellido,
+                profesion: this.usuarioPerfil.profesion
+            }
+
+
+            this.editandoPerfil = true;
+            
+        },//editarPerfil
+
+        guardarPerfil() {
+            this.usuarioPerfil.nombre = this.formulario.nombre;
+            this.usuarioPerfil.apellido = this.formulario.apellido;
+            this.usuarioPerfil.profesion = this.formulario.profesion;
+
+            this.editandoPerfil = false;
+        },
+
+        cancelarEdicion() {
+            this.editandoPerfil = false;
+        }
+    }//methods
 
 }
 </script>
@@ -59,15 +100,51 @@ export default {
                 :alt="usuarioPerfil.nombre"
                 class="foto-perfil"
             >
-
+        
+        <template v-if="!editandoPerfil">
             <h1>
                 {{ usuarioPerfil.nombre }}
                 {{ usuarioPerfil.apellido }}
             </h1>
 
             <p>{{ usuarioPerfil.profesion }}</p>
+        </template>
+        
+        <template v-else>
 
-            <button v-if="esMiPerfil" class="btn-perfil">
+            <input
+                v-model="formulario.nombre"
+                placeholder="Nombre"
+            >
+
+
+            <input
+                v-model="formulario.apellido"
+                placeholder="Nombre"
+            >
+
+
+            <input
+                v-model="formulario.profesion"
+                placeholder="Nombre"
+            >
+
+            <div class="acciones-edicion">
+
+                <button @click="guardarPerfil">
+                    Guardar
+                </button>
+
+                 <button @click="cancelarEdicion">
+                    Cancelar
+                </button>
+            </div>
+
+
+        </template>
+        
+
+            <button v-if="esMiPerfil && !editandoPerfil" class="btn-perfil" @click="editarPerfil">
                 Editar perfil
             </button>
 
