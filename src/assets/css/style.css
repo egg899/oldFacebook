@@ -1,0 +1,692 @@
+/* RESET */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #e9ebee;
+}
+
+/* LAYOUT */
+
+.contenedor{
+    width: 1100px;
+    margin: 20px auto;
+    /* justify-content: center; */
+    display: flex;
+    gap: 20px;
+}
+
+header{
+    height: 45px;
+    background-color: #3b5998;
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 20px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+aside{
+    width: 220px;
+    min-height: 700px;
+
+    border: 1px solid #ccc;
+    background: white;
+}
+
+section{
+    width: 620px;
+    min-height: 700px;
+
+    border: 1px solid #ccc;
+    background: white;
+}
+
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+
+.header {
+    height: 42px;
+    background:#3b5998;
+
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+
+
+.header .logo {
+    width: 180px;
+    color: white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.header .busqueda{
+    width:500px;
+}
+
+
+.header input{
+    width:100%;
+    height:25px;
+
+    border:none;
+    outline:none;
+
+    padding-left:10px;
+}
+
+
+.header .menu{
+    width:250px;
+
+    display:flex;
+    justify-content:space-around;
+}
+
+
+.header a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.header a:hover{
+    text-decoration:underline;
+}
+
+
+/*==========================================
+LEFT SIDEBAR
+==========================================*/
+
+
+.left-sidebar {
+    width:220px;
+}
+
+
+.perfil {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:15px;
+    background:white;
+    border:1px solid #d8dfea;
+    cursor:pointer;
+
+}
+
+
+.perfil img {
+    width:50px;
+    height:50px;
+    border-radius:4px;
+}
+
+
+.perfil span{
+    font-size:14px;
+    font-weight:bold;
+}
+
+
+.menu-lateral{
+
+    margin-top:10px;
+    background:white;
+    border:1px solid #d8dfea;
+}
+
+
+.menu-lateral a{
+    display:block;
+
+    padding:12px 15px;
+
+    text-decoration:none;
+
+    color:#3b5998;
+
+    font-size:14px;
+}
+
+.menu-lateral a:hover{
+    background:#f2f2f2;
+}
+
+
+.perfil p{
+
+    font-size:12px;
+
+    color:#666;
+
+    margin-top:3px;
+
+}
+
+
+/*==========================================
+POST
+==========================================*/
+.autor{
+    cursor:pointer;
+}
+
+
+
+.crear-publicacion textarea{
+
+    width:100%;
+    height:100px;
+
+    resize:none;
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+.crear-publicacion textarea:focus{
+
+    border-color:#3b5998;
+
+}
+
+
+.crear-publicacion{
+
+    background:white;
+
+    border:1px solid #d8dfea;
+
+    padding:20px;
+
+    border-radius:4px;
+
+}
+
+
+
+
+.preview {
+
+    width:100%;
+
+    margin-top:15px;
+
+    border-radius:5px;
+
+}
+
+
+.crear-publicacion h3{
+
+    margin-bottom:15px;
+
+    color:#3b5998;
+
+    font-size:18px;
+
+}
+
+
+
+
+.crear-publicacion button{
+
+    background:#4267B2;
+
+    color:white;
+    
+   
+    display:block;
+    border:none;
+    margin-top:10px;
+    padding:10px 22px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    border-radius:3px;
+
+}
+
+.crear-publicacion button:hover{
+
+    background:#365899;
+
+}
+
+
+
+
+
+
+.crear-publicacion button:disabled{
+
+    background: #c4c4c4;
+
+    border: 1px solid #a5a5a5;
+
+    color: #777;
+
+    cursor: not-allowed;
+
+}
+
+
+
+.post{
+
+    background:white;
+
+    border:1px solid #d8dfea;
+
+    margin-top:15px;
+
+    padding:15px;
+
+}
+
+.post h3{
+
+    color:#3b5998;
+
+    font-size:16px;
+
+}
+
+.post small{
+
+    color:#777;
+
+}
+
+.post p{
+
+    margin:15px 0;
+
+    line-height:22px;
+
+}
+
+.post img{
+
+    width:100%;
+
+    display:block;
+
+    margin-top:10px;
+
+}
+
+
+
+
+.post textarea{
+
+    width:100%;
+
+    min-height:100px;
+
+    padding:10px;
+
+    font-size:14px;
+
+    font-family:Arial, sans-serif;
+
+    resize:vertical;
+
+    border:1px solid #ccd0d5;
+
+    border-radius:4px;
+
+    outline:none;
+
+    box-sizing:border-box;
+
+    margin-top:10px;
+
+}
+
+
+.post textarea:focus{
+
+    border-color:#1877f2;
+
+    box-shadow:0 0 3px rgba(24,119,242,.3);
+
+}
+
+
+
+.guardar-btn, .cancelarEd-btn{
+
+    background:#4267B2;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 18px;
+
+    margin-top:10px;
+
+    cursor:pointer;
+
+    border-radius:3px;
+
+    font-weight:bold;
+
+}
+
+.cancelarEd-btn{
+    margin-left: 10px
+}
+
+.guardar-btn:hover, .cancelarEd-btn:hover{
+
+    background:#365899;
+
+}
+
+
+
+
+/*==========================================
+RIGHT SIDEBAR
+==========================================*/
+
+.right-sidebar{
+
+    width:220px;
+    
+
+}
+
+.widget{
+   width:219px;
+    background:white;
+
+    border:1px solid #d8dfea;
+
+    margin-bottom:15px;
+
+    padding:15px;
+
+}
+
+.widget h3{
+
+    color:#3b5998;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+}
+
+.contacto {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:6px 0;
+
+    cursor:pointer;
+
+}
+
+.contacto:hover{
+
+    background:#f5f6f7;
+
+}
+
+.estado{
+
+    font-size:12px;
+
+}
+
+
+
+/*==========================================
+ACCIONES
+==========================================*/
+
+.acciones{
+
+    margin-top:15px;
+
+    border-top:1px solid #ddd;
+
+    padding-top:10px;
+
+}
+
+.acciones button{
+
+    background:none;
+
+    border:none;
+
+    color:#3b5998;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.acciones button:nth-child(2) {
+    margin-left: 18px;
+}
+
+
+.acciones button:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+.eliminar-btn{
+
+    background:#d9534f;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 16px;
+
+    margin-left:5px;
+
+    cursor:pointer;
+
+    border-radius:3px;
+
+}
+
+.eliminar-btn:hover{
+
+    background:#c9302c;
+
+}
+/*==========================================
+COMENTARIO
+==========================================*/
+
+
+.comentarios{
+
+    margin-top:20px;
+
+    border-top:1px solid #ddd;
+
+    padding-top:15px;
+
+}
+
+.comentario{
+
+    background:#f5f6f7;
+
+    padding:10px;
+
+    margin-bottom:8px;
+
+    border-radius:4px;
+
+}
+
+.comentario strong{
+
+    color:#3b5998;
+
+    display:block;
+
+    margin-bottom:4px;
+
+}
+
+.nuevo-comentario{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+.nuevo-comentario input{
+
+    flex:1;
+
+    padding:8px;
+
+}
+
+.nuevo-comentario button{
+
+    padding:8px 15px;
+
+}
+
+/*==========================================
+PERFIL
+==========================================*/
+
+.perfil-usuario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #f0f2f5;
+  min-height: 100vh;
+}
+
+/* PORTADA */
+.portada {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(120deg, #2b2b2b, #444);
+  border-bottom: 1px solid #ddd;
+}
+
+/* BLOQUE INFO */
+.info-perfil {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  padding: 20px;
+  margin-top: -60px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* FOTO PERFIL */
+.foto-perfil {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  margin-top: -80px;
+  background: white;
+}
+
+/* NOMBRE */
+.info-perfil h1 {
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+/* PROFESION */
+.info-perfil p {
+  color: gray;
+  margin: 5px 0 15px;
+}
+
+/* BOTON */
+.btn-perfil {
+  background: #1877f2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-perfil:hover {
+  background: #165fce;
+}
+
+/* PUBLICACIONES */
+.publicaciones {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.publicaciones h2 {
+  align-self: flex-start;
+  color: #333;
+}
