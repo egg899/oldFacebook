@@ -33,7 +33,7 @@ import usuario from "../data/usuario.js";
                
                         this.publicaciones.unshift({
                         id: Date.now(),
-                        authorId: this.usuario.id,
+                        autorId: this.usuario.id,
                         autor: "German Verissimo",
                         fecha: "Hace un momento",
                         contenido: this.nuevaPublicacion,

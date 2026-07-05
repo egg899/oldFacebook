@@ -4,7 +4,9 @@ const usuarios = [
         nombre: "German",
         apellido: "Verissimo",
         profesion: "Desarrollador Web",
-        foto: "https://placehold.co/150x150"
+        foto: "https://placehold.co/150x150",
+        biografia: "Guitarrista, desarrollador web y fanático del rock."
+
     },
     {
         id: 2,

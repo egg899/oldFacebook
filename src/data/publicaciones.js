@@ -67,7 +67,32 @@ const publicaciones = [
                 contenido: "Me dieron ganas de viajar."
             }
         ]
+    },
+
+    {
+        id: 4,
+        autorId: 1,
+        autor: "German Verissimo",
+        fecha: "Ayer",
+        contenido: "Comparto la foto loquito",
+        imagen: "https://placehold.co/550x300",
+        likes: 5,
+
+        comentarios: [
+            {
+                id: 1,
+                autor: "Ana Torres",
+                contenido: "Qué hermoso lugar."
+            },
+            {
+                id: 2,
+                autor: "Juan Pérez",
+                contenido: "¡Excelente foto!"
+            }
+            
+        ]
     }
+
 
 ];
 

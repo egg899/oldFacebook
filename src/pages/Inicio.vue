@@ -16,11 +16,12 @@ export default {
 </script>
 
 <template>
+  
   <HeaderFacebook />
 
-  <main class="contenedor">
-    <LeftSidebar />
-    <FeedFacebook />
-    <RightSidebar />
+  <main class="flex flex-col md:flex-row gap-4 max-w-7xl mx-auto p-4 flex justify-center">
+    <LeftSidebar class=" w-full md:w-1/4 order-2 md:order-1" />
+    <FeedFacebook class="w-full md:w-2/4 order-1 md:order-2""/>
+    <RightSidebar class="w-full md:w-1/4 order-3 md:order-3" />
   </main>
 </template>

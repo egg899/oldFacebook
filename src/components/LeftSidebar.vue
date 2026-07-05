@@ -65,6 +65,3 @@ import menu from "../data/menu";
 </template>
 
 
-<style scoped>
-
-</style>

@@ -24,8 +24,11 @@
         
         computed:{
             esMiPublicacion(){
-                return this.publicacion.autorId === `${this.usuario.id}`;
-
+                console.log('Publicacion AutorId:, ', this.publicacion.autorId);
+                console.log('usuario Id: ', this.usuario.id)
+                console.log(this.publicacion.autorId == `${this.usuario.id}`)
+                return this.publicacion.autorId == `${this.usuario.id}`;
+                
             }
         },
 
@@ -50,6 +53,9 @@
 
 
             crearComentario() {
+                if(this.nuevoComentario.trim() === "") return;
+
+
                this.comentarios.push({
                         id: Date.now(),
                         autor: "German Verissimo",
@@ -93,6 +99,9 @@
             }, //cancelarEdicion
 
             eliminarPublicacion(){
+                // console.log(this.esMiPublicacion)
+                // console.log(this.publicacion.id)
+                 if (!this.esMiPublicacion) return;
                 this.$emit("eliminar", this.publicacion.id);
             },//eliminarPublicacion
 
