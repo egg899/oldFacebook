@@ -1,17 +1,34 @@
 <script>
 import usuario from "../data/usuario";
 import menu from "../data/menu";
-
+import GaleriaUsuario from "./GaleriaUsuario.vue";
+import publicaciones from "../data/publicaciones";
 
     export default {
         name:"LeftSidebar",
-
+        components:{
+        GaleriaUsuario
+    },
         data() {
             return {
                 usuario: usuario,
-                menu: menu
-            }
+                menu: menu, 
+                publicacionesLocal: publicaciones
+            };
+        },
+        computed:{
+            publicacionesUsuario() {
+                //console.log('El usuario: ',this.usuario, this.usuario.id);
+                const id = Number(this.usuario.id);
+                //console.log('Publicaciones Local: ', this.publicacionesLocal.filter(p => p.autorId === id))
+                return this.publicacionesLocal.filter(p => p.autorId === id);
+            },//publicacionesUsuario
+            imagenesUsuario() {
+           
+            return this.publicacionesUsuario.filter(p => p.imagen);
+        },//imagenesUsuario
         }
+
     }
 
 </script>
@@ -23,7 +40,7 @@ import menu from "../data/menu";
 
         
 
-        
+        <!-- {{ publicacionesUsuario }} -->
 
             <div
                 class="perfil"
@@ -58,7 +75,9 @@ import menu from "../data/menu";
 
         </nav>
 
-
+        <div class="bloque-galeria">
+            <GaleriaUsuario :imagenes="imagenesUsuario"/>
+        </div>
     </aside>
         
     

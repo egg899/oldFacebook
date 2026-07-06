@@ -816,6 +816,60 @@ PERFIL
   width: 220px;
 }
 
+button {
+    cursor: pointer;
+}
+
+
+
+/*GALERIA*/
+.bloque-galeria {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.galeria-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+
+
+.galeria {
+  margin-top: 20px;
+}
+
+.galeria-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+/* CUADRITOS PERFECTOS */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+/* CUADROS IGUALES SIEMPRE */
+.galeria-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.galeria-img:hover {
+  transform: scale(1.05);
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .left-sidebar,

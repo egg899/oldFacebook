@@ -5,13 +5,16 @@ import publicaciones from "../data/publicaciones";
 
 import HeaderFacebook from "../components/HeaderFacebook.vue";
 import PublicacionFacebook from "../components/PublicacionFacebook.vue";
+import GaleriaUsuario from "../components/GaleriaUsuario.vue";
+
 
 export default {
     name: "Perfil",
 
     components: {
         HeaderFacebook,
-        PublicacionFacebook
+        PublicacionFacebook,
+        GaleriaUsuario
     },
 
     data() {
@@ -37,10 +40,12 @@ export default {
 
         publicacionesUsuario() {
             const id = Number(this.$route.params.id);
+            
             return this.publicacionesLocal.filter(p => p.autorId === id);
         },
 
         imagenesUsuario() {
+           
             return this.publicacionesUsuario.filter(p => p.imagen);
         },
 
@@ -171,7 +176,7 @@ export default {
 
         </div>
 
-        <div v-if="imagenesUsuario.length" class="mt-8">
+        <!-- <div v-if="imagenesUsuario.length" class="mt-8">
 
             <h2 class="text-xl font-bold mb-4">Fotos</h2>
 
@@ -186,6 +191,10 @@ export default {
 
             </div>
 
+        </div> -->
+        <!---If imagenes usuario-->
+        <div class="bloque-galeria">
+            <GaleriaUsuario :imagenes="imagenesUsuario"/>
         </div>
 
     </section>

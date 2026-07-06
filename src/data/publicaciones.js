@@ -91,6 +91,28 @@ const publicaciones = [
             }
             
         ]
+    },
+
+    {
+        id: 5,
+        autorId: 1,
+        autor: "German Verissimo",
+        fecha: "Hoy",
+        contenido: "Comparto la foto loquito 2",
+        imagen: "https://placehold.co/550x550",
+        likes: 5,
+        comentarios:[]
+    },
+
+    {
+        id: 6,
+        autorId: 4,
+        autor: "Pedro López",
+        fecha: "Hoy",
+        contenido: "Comparto la foto de Pedrito",
+        imagen: "https://placehold.co/550x550",
+        likes: 5,
+        comentarios:[]
     }
 
 
