@@ -50,6 +50,7 @@ export default {
         },
 
         esMiPerfil() {
+            console.log('Es o no?',usuario.id === this.usuarioPerfil?.id)
             return usuario.id === this.usuarioPerfil?.id;
         }
     },
@@ -171,6 +172,7 @@ export default {
                 :key="publicacion.id"
                 :publicacion="publicacion"
                 :usuario="usuarioPerfil"
+                :esMiPerfil="esMiPerfil"
                 @eliminar="eliminarPublicacion"
             />
 

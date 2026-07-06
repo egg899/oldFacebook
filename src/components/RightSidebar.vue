@@ -1,13 +1,20 @@
 <script>
 import contactos from '../data/contactos';
+import usuarios from '../data/usuarios';
+import AmigosUsuario from './AmigosUsuario.vue';
 
 
     export default {
         name:"RightSidebar",
 
+        components: {
+            AmigosUsuario
+        },
+
         data(){
             return {
-                contactos: contactos
+                contactos: contactos,
+                usuarios: usuarios
             }
         }
     }
@@ -44,6 +51,11 @@ import contactos from '../data/contactos';
 
             </div>
 
+        </section>
+
+        <section class="widget ">
+            
+            <AmigosUsuario :usuarios="usuarios" />
         </section>
 
         <section class="widget">

@@ -8,7 +8,8 @@
 
         props: {
             publicacion: Object,
-            usuario:Object
+            usuario:Object,
+            esMiPerfil: Boolean
         },
 
         data() {
@@ -24,9 +25,9 @@
         
         computed:{
             esMiPublicacion(){
-                console.log('Publicacion AutorId:, ', this.publicacion.autorId);
-                console.log('usuario Id: ', this.usuario.id)
-                console.log(this.publicacion.autorId == `${this.usuario.id}`)
+                // console.log('Publicacion AutorId:, ', this.publicacion.autorId);
+                // console.log('usuario Id: ', this.usuario.id)
+                // console.log(this.publicacion.autorId == `${this.usuario.id}`)
                 return this.publicacion.autorId == `${this.usuario.id}`;
                 
             }
@@ -179,12 +180,12 @@
 
 
             <div class="acciones-propias" v-if="esMiPublicacion">
-            <button @click="editarPublicacion">
+            <button v-if="esMiPerfil" @click="editarPublicacion">
                  ✏ Editar
             </button>
 
 
-             <button class="eliminar-btn" 
+             <button v-if="esMiPerfil" class="eliminar-btn" 
                         @click="eliminarPublicacion"
                         
                         >
