@@ -6,8 +6,8 @@ const usuarios = [
         profesion: "Desarrollador Web",
         foto: "https://placehold.co/150x150",
         biografia: "Guitarrista, desarrollador web y fanático del rock.",
-        amigos: [2, 3]
-
+        amigos: [2, 3],
+        online: true
     },
     {
         id: 2,
@@ -15,7 +15,9 @@ const usuarios = [
         apellido: "Pérez",
         profesion: "Profesor",
         foto: "https://placehold.co/150x150",
-        amigos: [1]
+        biografia: "Profesor de historia y amante de los viajes.",
+        amigos: [1],
+        online: true
     },
     {
         id: 3,
@@ -23,8 +25,9 @@ const usuarios = [
         apellido: "Gómez",
         profesion: "Diseñadora Gráfica",
         foto: "https://placehold.co/150x150",
-        amigos: [1]
-        
+        biografia: "Diseñadora gráfica freelance y fanática de la fotografía.",
+        amigos: [1],
+        online: false
     },
     {
         id: 4,
@@ -32,9 +35,9 @@ const usuarios = [
         apellido: "López",
         profesion: "Fotógrafo",
         foto: "https://placehold.co/150x150",
-        biografia: "Guitarrista, desarrollador web y fanático del pop",
-        amigos: [4, 5]
-
+        biografia: "Fotógrafo de naturaleza y apasionado por el pop.",
+        amigos: [5],
+        online: true
     },
     {
         id: 5,
@@ -42,7 +45,9 @@ const usuarios = [
         apellido: "Torres",
         profesion: "Arquitecta",
         foto: "https://placehold.co/150x150",
-        amigos: [1, 2]
+        biografia: "Arquitecta especializada en diseño sustentable.",
+        amigos: [1, 2],
+        online: false
     }
 ];
 

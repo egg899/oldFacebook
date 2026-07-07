@@ -4,6 +4,7 @@ import LeftSidebar from '../components/LeftSidebar.vue';
 import FeedFacebook from '../components/FeedFacebook.vue';
 import RightSidebar from '../components/RightSidebar.vue';
 
+
 export default {
   name: 'Inicio',
   components: {
@@ -24,4 +25,6 @@ export default {
     <FeedFacebook class="w-full md:w-2/4 order-1 md:order-2"/>
     <RightSidebar class="w-full md:w-1/4 order-3 md:order-3" />
   </main>
+
+
 </template>

@@ -15,7 +15,7 @@ const usuario = {
     //     apellido: "López",
     //     profesion: "Fotógrafo",
     //     foto: "https://placehold.co/150x150",
-    //     biografia: "Guitarrista, desarrollador web y fanático del pop"
+    //     biografia: "Profesor de historia y amante de los viajes."
     //     amigos: [4, 5]
 }
 

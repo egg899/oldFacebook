@@ -885,3 +885,43 @@ button {
 
 
 }
+
+
+/*chat*/
+.contenedor-mensajes {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contenedor-mensajes::-webkit-scrollbar {
+    display: none;
+}
+
+
+.cerrarTodo{
+    position:absolute;
+    top:10px;
+    right:10px;
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f3f4f6;
+
+    font-size:18px;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s;
+    z-index:100;
+}
+
+.cerrarTodo:hover{
+    background:#d1d5db;
+}

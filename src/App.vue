@@ -1,8 +1,13 @@
 <script>
-
+import ChatFacebook from '../src/components/ChatFacebook.vue';
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    ChatFacebook
+  },
+
+  
   
 }
 
@@ -13,6 +18,8 @@ export default {
 
 
 <template>
+   <ChatFacebook />
   <RouterView />
+ 
 </template>
 
