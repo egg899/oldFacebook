@@ -16,7 +16,9 @@ export default {
 
             nuevoMensaje: "",
             
-            mensajes : mensajes
+            mensajes : mensajes,
+
+            chatMinimizado: false
         }
     },
     computed:   {
@@ -46,17 +48,47 @@ export default {
             this.chatSeleccionado = usuario;
         },
 
-        enviarMensaje() {
+       enviarMensaje() {
 
-            if(this.nuevoMensaje.trim() === ""){
+            if (this.nuevoMensaje.trim() === "" || !this.chatSeleccionado) {
                 return;
             }
 
-            console.log(this.nuevoMensaje);
+            this.mensajes.push({
+                id: Date.now(),
+                conversacionId: this.chatSeleccionado.id,
+                emisorId: this.usuario.id,
+                receptorId: this.chatSeleccionado.id,
+                texto: this.nuevoMensaje,
+                fecha: "Hace un momento"
+            });
 
             this.nuevoMensaje = "";
 
+            setTimeout(() => {
+
+                this.mensajes.push({
+                    id: Date.now() + 1,
+                    conversacionId: this.chatSeleccionado.id,
+                    emisorId: this.chatSeleccionado.id,
+                    receptorId: this.usuario.id,
+                    texto: "¡Hola! Esta es una respuesta automática.",
+                    fecha: "Hace un momento"
+                });
+
+            }, 2000);
+
+        },//EnviarMensaje
+
+        minimizarChat() {
+            this.chatMinimizado = !this.chatMinimizado;
+        },
+
+        cerrarChat() {
+            this.chatSeleccionado = null;
+            this.chatMinimizado = false;
         }
+
 
     }
 
@@ -66,6 +98,8 @@ export default {
 <template>
 <!-- {{ mensajesChat }} -->
 <div class="flex h-[80vh] bg-white rounded-lg shadow">
+
+        
 
     <!-- Lista de usuarios -->
     <aside class="w-1/3 border-r">
@@ -106,77 +140,99 @@ export default {
 
     <section class="flex-1 flex flex-col">
 
-        <div
-            v-if="chatSeleccionado"
-            class="flex flex-col h-full"
-        >
+    <div
+        v-if="chatSeleccionado"
+        class="flex flex-col h-full"
+    >
 
-            <div class="p-4 border-b font-bold">
+        <!-- Header del chat -->
+        <div class="p-4 border-b font-bold flex justify-between items-center">
 
-                {{ chatSeleccionado.nombre }}
+            <span>{{ chatSeleccionado.nombre }}</span>
+
+            <div class="flex gap-2">
+
+                <button @click="minimizarChat">
+                    {{ chatMinimizado ? "▲" : "▼" }}
+                </button>
+
+                <button @click="cerrarChat">
+                    ✖
+                </button>
 
             </div>
+
+        </div>
+
+        <!-- Contenido del chat -->
+        <div
+            v-if="!chatMinimizado"
+            class="flex flex-col flex-1"
+        >
 
             <div class="flex-1 p-4 overflow-y-auto">
 
                 <div
-                        v-for="mensaje in mensajesChat"
-                        :key="mensaje.id"
-                        class="mb-3"
+                    v-for="mensaje in mensajesChat"
+                    :key="mensaje.id"
+                    class="mb-3"
+                >
+
+                    <div
+                        :class="[
+                            'inline-block px-4 py-2 rounded-lg',
+                            mensaje.emisorId === usuario.id
+                                ? 'bg-blue-600 text-white ml-auto block w-fit'
+                                : 'bg-gray-200 text-black'
+                        ]"
                     >
 
-                        <div
-                            :class="[
-                                'inline-block px-4 py-2 rounded-lg',
-                                mensaje.emisorId === usuario.id
-                                    ? 'bg-blue-600 text-white ml-auto block w-fit'
-                                    : 'bg-gray-200 text-black'
-                            ]"
-                        >
+                        {{ mensaje.texto }}
 
-                            {{ mensaje.texto }}
+                    </div>
 
-                        </div>
+                </div>
+
+                <p
+                    v-if="mensajesChat.length === 0"
+                    class="text-center text-gray-400"
+                >
+                    Todavía no hay mensajes.
+                </p>
+
+            </div>
+
+            <div class="p-4 border-t flex gap-2">
+
+                <input
+                    v-model="nuevoMensaje"
+                    class="flex-1 border rounded px-3 py-2"
+                    placeholder="Escribí un mensaje..."
+                >
+
+                <button
+                    @click="enviarMensaje"
+                    class="bg-blue-600 text-white px-4 rounded"
+                >
+                    Enviar
+                </button>
+
+            </div>
 
         </div>
 
-        <p
-            v-if="mensajesChat.length === 0"
-            class="text-center text-gray-400"
-        >
-            Todavía no hay mensajes.
-        </p>
-                    </div>
+    </div>
 
-                    <div class="p-4 border-t flex gap-2">
+    <div
+        v-else
+        class="flex-1 flex items-center justify-center text-gray-500"
+    >
 
-                        <input
-                            v-model="nuevoMensaje"
-                            class="flex-1 border rounded px-3 py-2"
-                            placeholder="Escribí un mensaje..."
-                        >
+        Seleccioná un chat
 
-                        <button
-                            @click="enviarMensaje"
-                            class="bg-blue-600 text-white px-4 rounded"
-                        >
-                            Enviar
-                        </button>
+    </div>
 
-                    </div>
-
-                </div>
-
-                <div
-                    v-else
-                    class="flex-1 flex items-center justify-center text-gray-500"
-                >
-
-                    Seleccioná un chat
-
-                </div>
-
-            </section>
+</section>
 
         </div>
 
