@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Perfil from "../pages/Perfil.vue";
 import Inicio from '../pages/Inicio.vue';
-
+import ChatFacebook from '../components/ChatFacebook.vue'
 const routes = [
     {
         path: '/',
@@ -12,6 +12,10 @@ const routes = [
     {
         path:'/perfil/:id',
         component: Perfil
+    },
+    {
+        path:'/chat',
+        component: ChatFacebook,
     }
 ];
 
