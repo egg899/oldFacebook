@@ -17,7 +17,7 @@ export default {
             anio: "",
             genero: "",
             foto: "",
-            amigos: "",
+            amigos: [],
 
             dias: Array.from({ length: 31 }, (_, i) => i + 1),
 
@@ -39,7 +39,8 @@ export default {
             anios: Array.from(
                 { length: 120 },
                 (_, i) => new Date().getFullYear() - i
-            )
+            ),
+            error: ""
 
         };
     },
@@ -48,33 +49,62 @@ export default {
 
         registrar() {
 
-            if (this.email !== this.repetirEmail) {
-                alert("Los correos no coinciden.");
+            this.error = "";
+
+            if (!this.nombre.trim()) {
+                this.error = "Ingresá tu nombre.";
                 return;
             }
 
+            if (!this.apellido.trim()) {
+                this.error = "Ingresá tu apellido.";
+                return;
+            }
+
+            if (!this.email.trim()) {
+                this.error = "Ingresá tu correo electrónico.";
+                return;
+            }
+
+            if (this.email !== this.repetirEmail) {
+                this.error = "Los correos no coinciden.";
+                return;
+            }
+
+            if (!this.password.trim()) {
+                this.error = "Ingresá una contraseña.";
+                return;
+            }
+
+            if (!this.dia || !this.mes || !this.anio) {
+                this.error = "Seleccioná tu fecha de nacimiento.";
+                return;
+            }
+
+            if (!this.genero) {
+                this.error = "Seleccioná un género.";
+                return;
+            }
 
             Auth.registrar({
                 nombre: this.nombre,
                 apellido: this.apellido,
                 email: this.email,
                 password: this.password,
-                fechaNacimieto:`${this.dia}/${this.mes}/${this.anio}`,
+                fechaNacimiento: `${this.dia}/${this.mes}/${this.anio}`,
                 genero: this.genero,
-                biografia: '',
-                profesion:'',
+                biografia: "",
+                profesion: "",
                 foto: this.foto || "https://placehold.co/150x150",
                 amigos: [],
                 publicaciones: []
             });
 
+            const usuario = Auth.usuarioActual();
 
+            this.$router.push(`/perfil/${usuario.id}`);
 
-             const usuario = Auth.usuarioActual();
-
-                this.$router.push(`/perfil/${usuario.id}`);
-
-        }
+        }//registrar
 
     }
 
@@ -248,6 +278,12 @@ export default {
         Registrarte
     </button>
 
+<p
+    v-if="error"
+    class="mt-3 text-sm text-red-600 font-semibold"
+>
+    {{ error }}
+</p>
 </form>
 
 </template>

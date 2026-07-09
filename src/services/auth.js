@@ -1,5 +1,5 @@
 import usuarios from "../data/usuarios";
-
+import publicaciones from "../data/publicaciones";
 class Auth {
 
     obtenerUsuarios() {
@@ -103,7 +103,7 @@ class Auth {
 
         return nuevoUsuario;
 
-    };
+    };///registrar
 
     actualizarUsuario(usuarioActualizado) {
         const listaUsuarios = this.obtenerUsuarios();
@@ -135,8 +135,87 @@ class Auth {
         }
 
         return true;
-    }
+    }; ///actualizarUsuario
 
+    obtenerPublicaciones() {
+
+                const publicacionesGuardadas = localStorage.getItem("publicaciones");
+
+                if (publicacionesGuardadas) {
+                    return JSON.parse(publicacionesGuardadas);
+                }
+
+                localStorage.setItem(
+                    "publicaciones",
+                    JSON.stringify(publicaciones)
+                );
+
+                return [...publicaciones];
+
+            };/// obtenerPublicaciones
+
+
+
+        crearPublicaciones(publicacion) {
+            const publicaciones = this.obtenerPublicaciones();
+
+            publicaciones.unshift({
+                id: Date.now(),
+                ...publicacion
+            });
+
+            
+
+            localStorage.setItem(
+                    "publicaciones",
+                    JSON.stringify(publicaciones)
+            );
+
+
+            };//crearPublicaciones
+
+
+            eliminarPublicacion(id) {
+
+                const publicaciones = this.obtenerPublicaciones().filter(
+                    publicacion => publicacion.id !== id
+                );
+
+                localStorage.setItem(
+                    "publicaciones",
+                    JSON.stringify(publicaciones)
+                );
+
+                return publicaciones;
+
+
+
+
+            };//eliminarPublicacion
+
+            actualizarPublicacion(publicacionActualizada) {
+                const publicaciones = this.obtenerPublicaciones();
+
+                const indice = publicaciones.findIndex(p => p.id === publicacionActualizada.id);
+
+                if(indice === -1) {
+                    return false;
+                }
+
+                publicaciones[indice] = {
+                    ...publicaciones[indice],
+                    ...publicacionActualizada
+                };
+
+                localStorage.setItem(
+                    'publicaciones',
+                    JSON.stringify(publicaciones)
+                );
+
+                return publicaciones;
+
+
+            };//publicacionActualizada
 }
 
 export default new Auth();

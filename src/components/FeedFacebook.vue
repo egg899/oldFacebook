@@ -1,8 +1,8 @@
 <script>
-import Publicaciones from '../data/publicaciones';
+// import Publicaciones from '../data/publicaciones';
 import PublicacionFacebook from './PublicacionFacebook.vue';
-import usuario from "../data/usuario.js";
-
+// import usuario from "../data/usuario.js";
+import Auth from "../services/auth.js";
     export default {
         name: "FeedFacebook",
         components:{
@@ -12,9 +12,11 @@ import usuario from "../data/usuario.js";
 
         data() {
             return{
-                  usuario: usuario,
+                //   usuario: usuario,
+                  usuario: Auth.usuarioActual(),
                   nuevaPublicacion:"",
-                  publicaciones: Publicaciones,
+                //   publicaciones: Publicaciones,
+                  publicaciones: Auth.obtenerPublicaciones(),
                   imagenSeleccionada:null,
                   imagenPreview: ""
             }
@@ -31,16 +33,28 @@ import usuario from "../data/usuario.js";
             
             
                
-                        this.publicaciones.unshift({
-                        id: Date.now(),
-                        autorId: this.usuario.id,
-                        autor: "German Verissimo",
-                        fecha: "Hace un momento",
-                        contenido: this.nuevaPublicacion,
-                        imagen: this.imagenPreview,
-                        likes:0,
-                        comentarios:[]
+                        // this.publicaciones.unshift({
+                        // id: Date.now(),
+                        // autorId: this.usuario.id,
+                        // autor: `${this.usuario.nombre} ${this.usuario.apellido}`,
+                        // fecha: "Hace un momento",
+                        // contenido: this.nuevaPublicacion,
+                        // imagen: this.imagenPreview,
+                        // likes:0,
+                        // comentarios:[]
+                        // });
+                        Auth.crearPublicaciones({
+                            autorId: this.usuario.id,
+                            autor: `${this.usuario.nombre} ${this.usuario.apellido}`,
+                            fecha: "Hace un momento",
+                            contenido: this.nuevaPublicacion,
+                            imagen: this.imagenPreview,
+                            likes: 0,
+                            comentarios: []
                         });
+
+                        this.publicaciones = Auth.obtenerPublicaciones();
+
                         this.nuevaPublicacion = "";
                         this.imagenPreview = "";
                         this.imagenSeleccionada = null;
@@ -65,7 +79,11 @@ import usuario from "../data/usuario.js";
 
 
                 eliminarPublicacion(id) {
-                    this.publicaciones = this.publicaciones.filter(publicacion => publicacion.id !== id)
+                    //this.publicaciones = this.publicaciones.filter(publicacion => publicacion.id !== id)
+                    Auth.eliminarPublicacion(id);
+
+                    this.publicaciones = Auth.obtenerPublicaciones();
+                
                 }//eliminarPublicacion
                 
         }

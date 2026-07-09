@@ -28,7 +28,7 @@
                 // console.log('Publicacion AutorId:, ', this.publicacion.autorId);
                 // console.log('usuario Id: ', this.usuario.id)
                 // console.log(this.publicacion.autorId == `${this.usuario.id}`)
-                return this.publicacion.autorId == `${this.usuario.id}`;
+                  return Number(this.publicacion.autorId) === Number(this.usuario.id);
                 
             }
         },
@@ -87,7 +87,10 @@
                         return;
 
                     }
-                    
+                this.$emit('editar', {
+                    ...this.publicacion,
+                    contenido:this.textoEditado
+                })
                 this.publicacion.contenido = this.textoEditado;
                 this.editando = false;
 

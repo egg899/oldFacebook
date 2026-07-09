@@ -2,7 +2,7 @@
 import usuarios from "../data/usuarios";
 // import usuario from "../data/usuario";
 import Auth from "../services/auth";
-import publicaciones from "../data/publicaciones";
+// import publicaciones from "../data/publicaciones";
 
 import HeaderFacebook from "../components/HeaderFacebook.vue";
 import PublicacionFacebook from "../components/PublicacionFacebook.vue";
@@ -29,10 +29,14 @@ export default {
                 biografia: ""
             },
 
-            publicacionesLocal: publicaciones
+            // publicacionesLocal: publicaciones
+            publicacionesLocal:[]
         };
     },
 
+    created() {
+    this.publicacionesLocal = Auth.obtenerPublicaciones();
+    },
     computed: {
         usuarioPerfil() {
             const id = Number(this.$route.params.id);
@@ -111,10 +115,19 @@ export default {
         },
 
         eliminarPublicacion(id) {
-            this.publicacionesLocal = this.publicacionesLocal.filter(
-                p => p.id !== id
-            );
-        }
+            // this.publicacionesLocal = this.publicacionesLocal.filter(
+            //     p => p.id !== id
+            // );
+            this.publicacionesLocal = Auth.eliminarPublicacion(id)
+        },//eliminarPublicacion
+
+        editarPublicacion(publicacion){
+
+            
+            
+            this.publicacionesLocal = Auth.actualizarPublicacion(publicacion);
+
+        }// editarPublicacion
     }
 };
 </script>
@@ -194,6 +207,7 @@ export default {
                 :usuario="usuarioPerfil"
                 :esMiPerfil="esMiPerfil"
                 @eliminar="eliminarPublicacion"
+                @editar="editarPublicacion"
             />
 
         </div>
