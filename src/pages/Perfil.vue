@@ -1,6 +1,7 @@
 <script>
 import usuarios from "../data/usuarios";
-import usuario from "../data/usuario";
+// import usuario from "../data/usuario";
+import Auth from "../services/auth";
 import publicaciones from "../data/publicaciones";
 
 import HeaderFacebook from "../components/HeaderFacebook.vue";
@@ -20,7 +21,7 @@ export default {
     data() {
         return {
             editandoPerfil: false,
-
+            usuarios: null,
             formulario: {
                 nombre: "",
                 apellido: "",
@@ -35,7 +36,8 @@ export default {
     computed: {
         usuarioPerfil() {
             const id = Number(this.$route.params.id);
-            return usuarios.find(u => u.id === id);
+
+            return Auth.obtenerUsuarios().find(u => u.id === id);
         },
 
         publicacionesUsuario() {
@@ -49,10 +51,18 @@ export default {
             return this.publicacionesUsuario.filter(p => p.imagen);
         },
 
+        // esMiPerfil() {
+        //     console.log('Es o no?',usuario.id === this.usuarioPerfil?.id)
+        //     return usuario.id === this.usuarioPerfil?.id;
+        // }
+
         esMiPerfil() {
-            console.log('Es o no?',usuario.id === this.usuarioPerfil?.id)
-            return usuario.id === this.usuarioPerfil?.id;
-        }
+
+                const usuarioActual = Auth.usuarioActual();
+
+                return usuarioActual?.id === this.usuarioPerfil?.id;
+
+            }
     },
 
     methods: {

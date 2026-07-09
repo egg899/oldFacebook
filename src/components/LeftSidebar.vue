@@ -1,35 +1,46 @@
 <script>
-import usuario from "../data/usuario";
+// import usuario from "../data/usuario";
+import Auth from "../services/auth";
 import menu from "../data/menu";
 import GaleriaUsuario from "./GaleriaUsuario.vue";
 import publicaciones from "../data/publicaciones";
 
     export default {
-        name:"LeftSidebar",
-        components:{
+    name: "LeftSidebar",
+
+    components: {
         GaleriaUsuario
     },
-        data() {
-            return {
-                usuario: usuario,
-                menu: menu, 
-                publicacionesLocal: publicaciones
-            };
+
+    data() {
+        return {
+            usuario: Auth.usuarioActual(),
+            menu,
+            publicacionesLocal: publicaciones
+        };
+    },
+
+    computed: {
+
+        publicacionesUsuario() {
+
+            return this.publicacionesLocal.filter(
+                p => p.autorId === this.usuario.id
+            );
+
         },
-        computed:{
-            publicacionesUsuario() {
-                //console.log('El usuario: ',this.usuario, this.usuario.id);
-                const id = Number(this.usuario.id);
-                //console.log('Publicaciones Local: ', this.publicacionesLocal.filter(p => p.autorId === id))
-                return this.publicacionesLocal.filter(p => p.autorId === id);
-            },//publicacionesUsuario
-            imagenesUsuario() {
-           
-            return this.publicacionesUsuario.filter(p => p.imagen);
-        },//imagenesUsuario
+
+        imagenesUsuario() {
+
+            return this.publicacionesUsuario.filter(
+                p => p.imagen
+            );
+
         }
 
     }
+
+}
 
 </script>
 
@@ -42,22 +53,29 @@ import publicaciones from "../data/publicaciones";
 
         <!-- {{ publicacionesUsuario }} -->
 
-            <div
-                class="perfil"
-                @click="$router.push(`/perfil/${usuario.id}`)"
-            >
-             <img
-                :src="usuario.foto"
-                :alt="usuario.nombre"
-            >
-            <div>
+            <RouterLink
+    :to="`/perfil/${usuario.id}`"
+    class="perfil"
+>
 
-                <span>{{usuario.nombre}} {{ usuario.apellido }}</span>
+    <img
+        :src="usuario.foto"
+        :alt="usuario.nombre"
+    >
 
-                <p> {{ usuario.profesion }}</p>
-        </div>
+    <div>
+
+        <span>
+            {{ usuario.nombre }} {{ usuario.apellido }}
+        </span>
+
+        <p>
+            {{ usuario.profesion }}
+        </p>
 
     </div>
+
+</RouterLink>
 
    
        

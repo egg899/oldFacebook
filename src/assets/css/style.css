@@ -24,10 +24,17 @@ body{
 
 main {
      margin-top: 3rem;
+
 }
 
+.contenidoLogin{
+    margin-top:0!important;
+    margin-bottom: 3rem;
+}
+
+
 header{
-    height: 45px;
+    /* height: 45px; */
     background-color: #3b5998;
     color: white;
 
@@ -48,13 +55,13 @@ aside{
     background: white;
 }
 
-section{
+/* section{ */
     /* width: 620px;
     min-height: 700px; */
 
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc;
     background: white;
-}
+} */
 
 
 /* ========================= */

@@ -1,5 +1,6 @@
 <script>
 import ChatFacebook from '../src/components/ChatFacebook.vue';
+import Auth from "./services/auth.js";
 
 export default {
   name: 'App',
@@ -7,8 +8,11 @@ export default {
     ChatFacebook
   },
 
-  
-  
+  computed: {
+    mostrarChat() {
+      return Auth.estaLogueado();
+    }
+  } 
 }
 
 
@@ -18,7 +22,7 @@ export default {
 
 
 <template>
-   <ChatFacebook />
+   <ChatFacebook v-if="mostrarChat"/>
   <RouterView />
  
 </template>

@@ -1,21 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
-
+import { authMiddleware, guestMiddleware } from "../middleware/authMiddleware";
 import Perfil from "../pages/Perfil.vue";
 import Inicio from '../pages/Inicio.vue';
 import ChatFacebook from '../components/ChatFacebook.vue'
+import Login from '../pages/Login.vue';
+
+
 const routes = [
     {
-        path: '/',
-        component: Inicio
+        path: "/",
+        component: Login,
+        beforeEnter: guestMiddleware
     },
     {
-        path:'/perfil/:id',
-        component: Perfil
+       path: "/inicio",
+       component: Inicio,
+       beforeEnter: authMiddleware
+        },
+    {
+        path: "/perfil/:id",
+        component: Perfil,
+        beforeEnter: authMiddleware
     },
     {
-        path:'/chat',
+        path: "/chat",
         component: ChatFacebook,
+        beforeEnter: authMiddleware
     }
 ];
 
