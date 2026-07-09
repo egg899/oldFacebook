@@ -16,6 +16,8 @@ export default {
             mes: "",
             anio: "",
             genero: "",
+            foto: "",
+            amigos: "",
 
             dias: Array.from({ length: 31 }, (_, i) => i + 1),
 
@@ -60,8 +62,10 @@ export default {
                 fechaNacimieto:`${this.dia}/${this.mes}/${this.anio}`,
                 genero: this.genero,
                 biografia: '',
-                profesion:'GROSO',
-                foto:"https://placehold.co/150x150"
+                profesion:'',
+                foto: this.foto || "https://placehold.co/150x150",
+                amigos: [],
+                publicaciones: []
             });
 
 

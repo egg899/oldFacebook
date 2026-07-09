@@ -93,6 +93,16 @@ export default {
             this.usuarioPerfil.profesion = this.formulario.profesion;
             this.usuarioPerfil.biografia = this.formulario.biografia;
 
+            Auth.actualizarUsuario({
+                  id: this.usuarioPerfil.id,
+                  nombre: this.formulario.nombre,
+                  apellido: this.formulario.apellido,
+                  profesion: this.formulario.profesion,
+                  biografia: this.formulario.biografia
+            });
+
+
+
             this.editandoPerfil = false;
         },
 

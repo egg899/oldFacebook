@@ -1,5 +1,7 @@
 <script>
-import usuario from "../data/usuario";
+//import usuario from "../data/usuario";
+import Auth from "../services/auth";
+
 
 export default {
     name: "AmigosUsuario",
@@ -13,56 +15,69 @@ export default {
 
     data() {
         return {
-            amigos: [],
-            sugeridos: []
+            usuario: Auth.usuarioActual(),
+           
         };
     },
 
-    created() {
-
-        this.amigos = this.usuarios.filter(u =>
-            usuario.amigos.includes(u.id)
-        );
-
-        this.sugeridos = this.usuarios.filter(u =>
-            u.id !== usuario.id &&
-            !usuario.amigos.includes(u.id)
-        );
-    },
-
-    methods: {
-
-        agregarAmigo(user) {
-
-            this.amigos.push(user);
-
-            this.sugeridos = this.sugeridos.filter(
-                u => u.id !== user.id
-            );
-
-            usuario.amigos.push(user.id);
+    computed: {
+        usuarios() {
+            return Auth.obtenerUsuarios();
         },
 
-        quitarAmigo(user) {
-
-            this.sugeridos.push(user);
-
-            this.amigos = this.amigos.filter(
-                u => u.id !== user.id
+        amigos() {
+            return this.usuarios.filter(
+                u => this.usuario.amigos.includes(u.id)
             );
+        },
 
-            usuario.amigos = usuario.amigos.filter(
+        sugeridos() {
+            return this.usuarios.filter(
+                u =>
+                    u.id !== this.usuario.id &&
+                    !this.usuario.amigos.includes(u.id)
+                );
+        }
+    },//computed
+
+    methods: {
+        agregarAmigo(user) {
+            this.usuario.amigos.push(user.id);
+            Auth.actualizarUsuario(this.usuario);
+            this.usuario = Auth.usuarioActual();
+        },
+
+         quitarAmigo(user) {
+
+            this.usuario.amigos = this.usuario.amigos.filter(
                 id => id !== user.id
             );
+
+            Auth.actualizarUsuario(this.usuario);
+
+            this.usuario = Auth.usuarioActual();
+
         }
     }
+
+    
 };
 </script>
 
 <template>
 
 <section class="bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
-
+        <div 
+            v-if="$route.path === '/amigos'"
+            class="px-5 py-3 bg-gray-100 border-b border-gray-300"
+        >
+            <button
+                @click="$router.back()"
+                class="text-sm text-blue-700 hover:underline"
+            >
+                ← Volver
+            </button>
+        </div>
     <!-- AMIGOS -->
     <div class="px-5 py-4 bg-gray-100 border-b border-gray-300">
         <h2 class="font-semibold text-gray-700 text-sm">
@@ -116,10 +131,10 @@ export default {
     </div>
 
     <!-- VER TODOS -->
-    <div class="px-5 py-4 border-b border-gray-300">
-        <button class="text-sm text-blue-700 hover:underline">
+    <div v-if="amigos.length > 0 && !['/amigos'].includes($route.path)" class="px-5 py-4 border-b border-gray-300">
+        <RouterLink to="/amigos" class="text-sm text-blue-700 hover:underline">
             Ver todos los amigos →
-        </button>
+        </RouterLink>
     </div>
 
     <!-- SUGERIDOS -->

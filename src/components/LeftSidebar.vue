@@ -82,14 +82,17 @@ import publicaciones from "../data/publicaciones";
 
         <nav class="menu-lateral">
 
-            <a 
-                href="#"
+            <RouterLink
                 v-for="opcion in menu"
-                :key="opcion.id">
-
+                :key="opcion.id"
+                :to="opcion.ruta === '/perfil'
+                    ? `/perfil/${usuario.id}`
+                    : opcion.ruta"
+                class="menu-item"
+            >
                 {{ opcion.icono }}
                 {{ opcion.nombre }}
-            </a>
+            </RouterLink>
 
         </nav>
 

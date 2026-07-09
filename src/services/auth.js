@@ -103,6 +103,38 @@ class Auth {
 
         return nuevoUsuario;
 
+    };
+
+    actualizarUsuario(usuarioActualizado) {
+        const listaUsuarios = this.obtenerUsuarios();
+
+        const indice = listaUsuarios.findIndex( usuario => usuario.id === usuarioActualizado.id );
+
+        if(indice === -1) {
+            return false;
+        }; //indice -1
+
+        listaUsuarios[indice] = {
+            ...listaUsuarios[indice],
+            ...usuarioActualizado
+        };
+
+        localStorage.setItem(
+            "usuarios",
+            JSON.stringify(listaUsuarios)
+        );
+
+
+        const usuarioLogueado = this.usuarioActual();
+
+        if(usuarioLogueado && usuarioLogueado.id === usuarioActualizado.id) {
+            localStorage.setItem(
+                "usuarioLogueado",
+                JSON.stringify(listaUsuarios[indice])
+            );
+        }
+
+        return true;
     }
 
 }

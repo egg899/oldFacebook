@@ -8,11 +8,24 @@ export default {
     ChatFacebook
   },
 
-  computed: {
-    mostrarChat() {
-      return Auth.estaLogueado();
+   data() {
+    return {
+      mostrarChat: Auth.estaLogueado()
+    };
+  },
+
+  // computed: {
+  //   mostrarChat() {
+  //     return Auth.estaLogueado();
+  //   }
+  // },
+  
+  watch: {
+    $route() {
+      this.mostrarChat = Auth.estaLogueado();
+
     }
-  } 
+  }
 }
 
 
@@ -22,7 +35,7 @@ export default {
 
 
 <template>
-   <ChatFacebook v-if="mostrarChat"/>
+   <ChatFacebook v-if="!['/', '/login'].includes($route.path)" />
   <RouterView />
  
 </template>

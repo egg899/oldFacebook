@@ -1,6 +1,7 @@
 <script>
 import contactos from '../data/contactos';
-import usuarios from '../data/usuarios';
+// import usuarios from '../data/usuarios';
+import Auth from "../services/auth";
 import AmigosUsuario from './AmigosUsuario.vue';
 
 
@@ -14,7 +15,7 @@ import AmigosUsuario from './AmigosUsuario.vue';
         data(){
             return {
                 contactos: contactos,
-                usuarios: usuarios
+                usuarios: Auth.obtenerUsuarios(),
             }
         }
     }
