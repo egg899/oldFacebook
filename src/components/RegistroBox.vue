@@ -60,7 +60,8 @@ export default {
                 fechaNacimieto:`${this.dia}/${this.mes}/${this.anio}`,
                 genero: this.genero,
                 biografia: '',
-                profesion:''
+                profesion:'GROSO',
+                foto:"https://placehold.co/150x150"
             });
 
 
