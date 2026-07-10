@@ -37,7 +37,7 @@ export default {
                 const usuario = Auth.usuarioActual();
                 
                 this.$router.push(`/perfil/${usuario.id}`);
-
+                
             } else {
 
                 this.error = "Email o contraseña incorrectos.";

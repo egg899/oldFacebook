@@ -127,7 +127,25 @@ export default {
             
             this.publicacionesLocal = Auth.actualizarPublicacion(publicacion);
 
-        }// editarPublicacion
+        },// editarPublicacion
+
+
+        darLike(datos) {
+
+                    if (datos.yaDioLike) {
+                        Auth.quitarLike(
+                            datos.publicacionId,
+                            datos.usuarioId
+                        );
+                    } else {
+                        Auth.darLike(
+                            datos.publicacionId,
+                            datos.usuarioId
+                        );
+                    }
+
+                    this.publicacionesLocal = Auth.obtenerPublicaciones();
+                }
     }
 };
 </script>
@@ -208,6 +226,7 @@ export default {
                 :esMiPerfil="esMiPerfil"
                 @eliminar="eliminarPublicacion"
                 @editar="editarPublicacion"
+                @like="darLike"
             />
 
         </div>

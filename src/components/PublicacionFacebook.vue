@@ -1,6 +1,5 @@
-
 <script>
-
+import Auth from "../services/auth";
 
 
     export default {
@@ -14,8 +13,8 @@
 
         data() {
             return {
-                likes: this.publicacion.likes,
-                yaDioLike: false,
+                // likes: this.publicacion.likes,
+                // yaDioLike: false,
                 comentarios:this.publicacion.comentarios,
                 nuevoComentario: "",
                 editando: false,
@@ -28,9 +27,20 @@
                 // console.log('Publicacion AutorId:, ', this.publicacion.autorId);
                 // console.log('usuario Id: ', this.usuario.id)
                 // console.log(this.publicacion.autorId == `${this.usuario.id}`)
+                console.log(this.publicacion);
                   return Number(this.publicacion.autorId) === Number(this.usuario.id);
                 
-            }
+            },
+
+             cantidadLikes() {
+                return this.publicacion.likes?.length || 0;
+            },
+
+            yaDioLike(){
+                const usuario = Auth.usuarioActual();
+
+                return this.publicacion.likes?.includes(usuario.id);
+            },
         },
 
         methods: {
@@ -40,18 +50,26 @@
             },//verPerfil
 
 
+            // darLike() {
+            //     if(this.yaDioLike){
+            //         this.likes--;
+            //         this.yaDioLike = false;
+            //     } else {
+            //         this.likes++;
+            //         this.yaDioLike = true;
+            //     }
+            // },//darLike
+
             darLike() {
-                if(this.yaDioLike){
-                    this.likes--;
-                    this.yaDioLike = false;
-                } else {
-                    this.likes++;
-                    this.yaDioLike = true;
-                }
-            },//darLike
+                const usuario = Auth.usuarioActual();
+                this.$emit("like", {
+                    publicacionId: this.publicacion.id,
+                    usuarioId: usuario.id,
+                    yaDioLike:this.yaDioLike
+                });//like emit
+            },
 
-
-
+           
 
             crearComentario() {
                 if(this.nuevoComentario.trim() === "") return;
@@ -178,7 +196,7 @@
         <div class="acciones">
             <button @click="darLike">
                 {{ yaDioLike ? "💙 Te gusta": "👍 Me gusta" }} 
-                ({{ likes }})   
+                ({{ cantidadLikes }})   
             </button>
 
 

@@ -49,7 +49,7 @@ import Auth from "../services/auth.js";
                             fecha: "Hace un momento",
                             contenido: this.nuevaPublicacion,
                             imagen: this.imagenPreview,
-                            likes: 0,
+                            likes: [],
                             comentarios: []
                         });
 
@@ -84,7 +84,27 @@ import Auth from "../services/auth.js";
 
                     this.publicaciones = Auth.obtenerPublicaciones();
                 
-                }//eliminarPublicacion
+                },//eliminarPublicacion
+
+
+                ///LIKES
+                darLike(datos){
+                    if(datos.yaDioLike) {
+                        Auth.quitarLike(
+                            datos.publicacion.Id,
+                            datos.usuarioId
+                        );
+                    } else {
+                        Auth.darLike(
+                            datos.publicacioId,
+                            datos.usuarioId
+                        );
+                    }
+
+                    this.publicaciones = Auth.obtenerPublicaciones();
+
+
+                },//darLikes
                 
         }
     }
@@ -138,6 +158,7 @@ import Auth from "../services/auth.js";
             :publicacion="publicacion"
             :usuario="usuario"
             @eliminar="eliminarPublicacion"
+            @like="darLike"
         />
         
         <!-- <article

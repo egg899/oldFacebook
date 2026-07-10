@@ -7,7 +7,7 @@ const publicaciones = [
         fecha: "Hace 10 minutos",
         contenido: "¡Hola a todos! Bienvenidos a Facebook.",
         imagen: "https://placehold.co/550x250",
-        likes: 12,
+        likes: [],
 
         comentarios: [
             {
@@ -30,7 +30,7 @@ const publicaciones = [
         fecha: "Hace 1 hora",
         contenido: "Qué lindo día para salir a caminar.",
         imagen: "",
-        likes: 0,
+        likes: [],
 
         comentarios: [
             {
@@ -48,7 +48,7 @@ const publicaciones = [
         fecha: "Ayer",
         contenido: "Comparto una foto de mis vacaciones.",
         imagen: "https://placehold.co/550x300",
-        likes: 5,
+        likes: [],
 
         comentarios: [
             {
@@ -76,7 +76,7 @@ const publicaciones = [
         fecha: "Ayer",
         contenido: "Comparto la foto loquito",
         imagen: "https://placehold.co/550x300",
-        likes: 5,
+        likes: [],
 
         comentarios: [
             {
@@ -100,7 +100,7 @@ const publicaciones = [
         fecha: "Hoy",
         contenido: "Comparto la foto loquito 2",
         imagen: "https://placehold.co/550x550",
-        likes: 5,
+        likes: [],
         comentarios:[]
     },
 
@@ -111,7 +111,7 @@ const publicaciones = [
         fecha: "Hoy",
         contenido: "Comparto la foto de Pedrito",
         imagen: "https://placehold.co/550x550",
-        likes: 5,
+        likes: [],
         comentarios:[]
     }
 

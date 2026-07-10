@@ -1,5 +1,6 @@
 import usuarios from "../data/usuarios";
 import publicaciones from "../data/publicaciones";
+
 class Auth {
 
     obtenerUsuarios() {
@@ -216,6 +217,59 @@ class Auth {
 
 
             };//publicacionActualizada
+
+
+            darLike (publicacionId, usuarioId) {
+                const publiaciones = this.obtenerPublicaciones();
+                const publicacion = publicaciones.find(
+                    p => p.id === publicacionId
+                );
+
+                if(!publicacion.likes) {
+                        publicacion.likes = [];
+                }
+
+                if(!publicacion.likes.includes(usuarioId)) {
+                    publicacion.likes.push(usuarioId);
+                }
+
+
+                localStorage.setItem(
+                    "publicaciones",
+                    JSON.stringify(publicaciones)
+                );
+
+                return publicaciones;
+
+            };///DarLike
+
+            quitarLike(publicacionId, usuarioId) {
+                const publicaciones = this.obtenerPublicaciones();
+                
+
+                const publicacion = publicaciones.find(
+                    p => p.id === publicacionId
+                );
+
+                if(!publicacion) {
+                    return publicaciones;
+                }
+
+                publicacion.likes = publicacion.likes.filter(
+                    id => id !== usuarioId
+                );
+
+                localStorage.setItem(
+                    "publicaciones",
+                    JSON.stringify(publicaciones)
+                );
+
+                return publicaciones;
+
+
+
+
+            };//quitarLike
 }
 
 export default new Auth();
